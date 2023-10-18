@@ -1,0 +1,15 @@
+ID,Make,Year,Model,ModelShortName,SubModel,BodyType,FuelType,EVRange_miles,CurrentRange_miles,kWhRated,ModulePackCapacity_Ah,NominalPackVoltage,MaxPackVoltage,MinPackVoltage
+1,Tesla,2022,Model 3,3,Standard Range,sedan,electric,272,210,60.9,174,350,403.2,240
+2,Tesla,2022,Model 3,3,Long Range,sedan,electric,358,210,82.25,235,350,403.2,240
+3,Tesla,2022,Model 3,3,Performance,sedan,electric,315,210,82.25,235,350,403.2,240
+4,Tesla,2021,Model 3,3,Standard Range,sedan,electric,263,210,55.3,158,350,403.2,240
+5,Tesla,2021,Model 3,3,Long Range,sedan,electric,353,210,82.25,235,350,403.2,240
+6,Tesla,2021,Model 3,3,Performance,sedan,electric,315,210,82.25,235,350,403.2,240
+7,Tesla,2020,Model 3,3,Standard Range,sedan,electric,220,210,55.3,158,350,403.2,240
+8,Tesla,2020,Model 3,3,Long Range,sedan,electric,330,210,82.25,235,350,403.2,240
+9,Tesla,2020,Model 3,3,Performance,sedan,electric,322,210,90,257.14,350,403.2,240
+10,Tesla,2019,Model 3,3,Performance,sedan,electric,220,210,55.3,158,350,403.2,240
+11,Tesla,2019,Model 3,3,Performance,sedan,electric,240,210,60,171.43,350,403.2,240
+12,Tesla,2019,Model 3,3,Performance,sedan,electric,310,210,82.25,235,350,403.2,240
+13,Tesla,2021,Model Y,Y,,SUV,electric,326,210,75,214.29,350,403.2,240
+14,Tesla,2021,Model Y,Y,,SUV,electric,303,210,75,214.29,350,403.2,240

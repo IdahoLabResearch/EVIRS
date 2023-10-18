@@ -1,0 +1,12 @@
+
+
+<div id="Page2" class="tabcontent">
+{% if gotData %}
+    {% include 'page2slides.html' %}
+{% else %}
+    <h3>Output-2</h3>
+    <p>Estimated SOC, capacity remaining, and pack voltage</p>
+    <p>Need to use cell level SOC-V database or simple interpolation.</p>
+{% end %}
+</div>
+    

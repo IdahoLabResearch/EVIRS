@@ -1,0 +1,63 @@
+<div id="Page1" class="tabcontent">
+    {% if gotData %}
+    <br>Enter Remaining Miles 
+    <input style="width:70px" type="number" id="curmiles" name="curmiles" oninput="calcData(this.value, {{ids}}, {{rngs}}, {{kWh}}, {{maxvolt}}, {{minvolt}})">
+    <br><br>
+    <table class="page1data">
+      <tr>
+        <th>{{dbEV[0]['Year']}} {{dbEV[0]['Make']}} {{dbEV[0]['Model']}}</th>
+        {% for row in dbEV %}
+          <th><b>{{row['SubModel']}}</b></th>
+        {% end %}
+      </tr>
+      <tr>
+        <td>kWh rated: </td>
+        {% for row in dbEV %}
+          <td><b>{{row['kWhRated']}}</b></td>
+        {% end %}
+      </tr>
+      <tr>
+        <td>Module or pack capacity (Ah)</td>
+        {% for row in dbEV %}
+          <td> <b>{{row['ModulePackCapacity_Ah']}}</b></td>
+        {% end %}
+      </tr>
+      <tr>
+        <td>Nominal pack voltage</td>
+        {% for row in dbEV %}
+          <td> <b>{{row['NominalPackVoltage']}}</b></td>
+        {% end %}
+      </tr>
+      <tr>
+        <td>State of charge</td>
+        {% for row in dbEV %}
+          <td> <b><span id="socPct{{row['ID']}}"></span>  </b></td>                 <!--SOC =  curmiles /dbEV[8]-->
+        {% end %}
+      </tr>
+      <tr>
+        <td>Energy stranded (kWh)</td>
+        {% for row in dbEV %}
+          <td> <b><span id="kwhStranded{{row['ID']}}"></span></b></td>
+        {% end %}
+      </tr>
+      <tr>
+        <td>Current pack voltage</td>
+        {% for row in dbEV %}
+          <td> <b><span id="curPackVoltage{{row['ID']}}"></span></b></td>
+        {% end %}
+      </tr>
+      <tr>
+        <td>Min / Max pack voltage</td>
+        {% for row in dbEV %}
+          <td> <b>{{row['MinPackVoltage']}} / {{row['MaxPackVoltage']}}</b></td>
+        {% end %}
+      </tr>
+      </table>
+    {% else %}
+      <h3>Output-1</h3>
+      <br/>
+      <br/>
+      <p>Vehicle Battery Spec.: We can decide what we want to show from the data base.</p> 
+    {% end %}
+   
+  </div>

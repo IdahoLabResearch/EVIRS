@@ -1,0 +1,58 @@
+<div id="Recycle" class="tabcontent">
+    <div>
+        <!-- Full-width images with number and caption text -->
+        <div style="margin:auto;">
+          <div style="float:left; margin:0; width:50%;">
+            <br><br>
+            <b>Hyundai's Recommendation for Battery Storage</b>
+            <ul>
+                <li>To store the damaged battery safely, the battery must be discharged</li>
+                <li>Prepare water that does not contain salt such as tap or pond water</li>
+                <li>Leave the battery in water for at least 90 hours</li>
+                <li>Then put salt into the water pool to make 3.5% salt water</li>
+                <li>Wait for additional 48 hours in salt water</li>
+                <li>Then take out the battery from the water pool and drain and dry it</li>
+            </ul>
+
+            <img id="disposeimage2" class="zoomD" style="width:55%; cursor:pointer;margin-left:55px;" src="{{ static_url('images/BatterySaltBath-Removed.png') }}"><br>
+            <span style="font-style:italic;color:gray;font-size: smaller;margin-left: 25px;">If battery CAN be removed</span><br><br>
+
+            <img id="disposeimage1" class="zoomD" style="width:55%; cursor:pointer;margin-left:55px;" src="{{ static_url('images/BatterySaltBath-InVehicle.png') }}"><br>
+            <span style="font-style:italic;color:gray;font-size: smaller;margin-left: 25px;">If battery CAN'T be removed</span>
+          </div>
+          <div style="float:left; margin:0; width:50%;text-align: center;"">
+            <div class="dispose-buttons-container">
+                {% raw disposeButtons %}
+            </div>
+          </div>
+        </div>
+        <dialog id="dispose-dialog" style="width:100%;height:100%;">
+            <div class="dispose-container">
+              <div class="dispose-first-row">
+                <button class="dispose-dialog-close" style="float:right;" onclick="document.getElementById('dispose-dialog').close();">
+                  Close
+                </button>
+              </div>
+              <iframe id="disposeframe" class="dispose-second-row" src=""></iframe>
+            </div>
+        </dialog>
+    </div>
+
+    <script>
+        disposemodal = document.getElementById('dispose-dialog')
+        
+        disposebuttons = document.getElementsByClassName("disposebutton")
+        for (btn of disposebuttons) {
+            btn.addEventListener("click", () => {disposemodal.showModal();})
+        }
+        disposecloseBtns = document.getElementsByClassName("dispose-dialog-close");
+        
+        for (btn of disposecloseBtns) {
+            btn.addEventListener("click", () => {
+            disposemodal.close();
+            })
+        }
+    </script>   
+</div>
+        
+    

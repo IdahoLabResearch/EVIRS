@@ -1,0 +1,207 @@
+<style>
+  html {
+      --entryleftmargin:300px;
+      --entryboxwidth:300px;
+      --entryboxheight:125px;
+      --entryboxleftpadding: 5px;
+      --divorwidth:28px;
+  }
+
+  #pagetitle {
+      font-size:23pt; 
+      font-weight:bold; 
+      text-align: center; 
+      color:#757575;
+   }
+
+   #entrydiv {
+      width:1200px;
+      background-color:#ccc;
+   }
+
+  #vehicleentrytitle {
+      width:1200px;
+      margin-left: 20px; 
+      margin-bottom:5px;
+      text-align: center;
+  }
+
+  #vinbox {
+      position:relative;
+      float:left;
+      margin-left: var(--entryleftmargin);
+      margin-right:0px;
+      padding:5px 0px 15px var(--entryboxleftpadding);
+      height:var(--entryboxheight);
+      width:var(--entryboxwidth);
+      border-width:0px 0.5px 0px 0px;
+      border-style: solid;
+      border-color: #ccc;
+      background-color:#f1f1f1
+  }
+
+  #mmybox {
+      float:left;
+      margin-left:0px;
+      padding:5px 0px 15px var(--entryboxleftpadding);
+      height:var(--entryboxheight);
+      width:var(--entryboxwidth);
+      /* border-width:1px;
+      border-style: solid; */
+      background-color:#f1f1f1
+  }
+
+  #divor {
+      float: left;
+      position: absolute;
+      top: 50px;
+      left: calc(var(--entryboxwidth) - (var(--divorwidth)/2));
+      height: 18px;
+      width: var(--divorwidth);
+      z-index:10;
+      background-color:darkgreen;
+      text-align: center;
+      font-weight: bold;
+      color:cornsilk
+  }
+
+  .vehicleentrytype {
+      float:left;
+      margin-right:25px;
+      margin-top: 10px;
+  }
+
+  .vinentries {
+      float:left;
+      margin-right:20px;
+      margin-top: 10px;
+      /* height:21px; */
+  }
+
+  .mmyentries {
+      float:left;
+      margin-right:20px;
+      margin-top: 10px;
+      height:21px;
+  }
+
+  #vinentrybox {
+      margin-right:0px;
+      margin-bottom:0px;
+      vertical-align: top;
+      width:168px;
+  }
+
+  .errmsg {
+    color: red;
+    font-size: smaller;
+    font-weight: bold;
+    vertical-align: top;
+    margin-top:0px;
+    margin-left:20px;
+    /* margin-bottom: 0px; */
+  }
+
+  #vinclearbtn {
+      height:22px;
+      width:22px;
+  }
+  
+  #vinsubmodellist {
+      width:123px;
+  }
+
+  .mmyentrybox {
+      height:21px;
+      width:145px;
+      margin-bottom: 5px;
+  }
+
+  label {
+      vertical-align: top;
+  }
+
+  .mmylabel {
+      display:inline-block;
+      width:74px;
+      text-align: right;
+  }
+</style>
+
+<div id="lightbox"></div>
+<div id="maintitle">
+  <!-- <h2 style="font-size:23pt; font-weight:bold; text-align: center; color:#757575;">EVIRS</h2>
+  <h2 style="font-size:20pt; font-weight:bold; text-align: center; color:#757575;">Electric Vehicle Information and Incident Response Solutions</h2> -->
+  <div style="margin-top:12px; font-size:23pt; font-weight:bold; text-align: center; color:#757575;">EVIRS</div>
+  <div style="margin-bottom:12px; font-size:20pt; font-weight:bold; text-align: center; color:#757575;">Electric Vehicle Information and Incident Response Solutions</div>
+  <form id="myform" method="post" action="/" enctype="multipart/form-data" accept-charset="utf-8">
+      <section>
+      <div style="width:800px;">
+        <div id="entrydiv">
+          <div id="vehicleentrytitle" title="Enter vehicle's VIN or its Make, Model and Year. The Submodel is optional."><b>Please identify vehicle</b></div>
+          <div id="vinbox">
+              <div class="vehicleentrytype">
+                  <input type="radio" id="vinbtn" name="vehicle" value="vinbtn" checked>
+              </div>
+              <div class="vinentries">
+                  <label>VIN</label>
+                  <input id="vinentrybox" type="text" list="vinlist" id="vin" name="vin" title="Enter 17 character VIN" 
+                         onkeypress="SetCheckOnButton('vinbtn')">
+                  <img id="vinclearbtn" src="{{ static_url('images/ClearText.png') }}" 
+                       onclick="document.getElementById('vinentrybox').value = '';return;">
+                  <br><div class="errmsg" id="vin_errmsg">&nbsp;</div><br>
+                  <label>Submodel</label>
+                  <select id="vinsubmodellist" name="vinsubmodellist" title="Selecting a Submodel is optional."
+                          onchange="SetCheckOnButton('vinbtn')" onkeypress="enterKeySubmit(event)">
+                    <option value="All">All (not sure)</option>
+                  </select>
+              </div>
+              <div id="divor"> OR </div>
+          </div>
+          <div id="mmybox">
+              <div class="vehicleentrytype">
+                  <input type="radio" id="mmybtn" name="vehicle" value="mmybtn">
+              </div>
+              <div class="mmyentries">
+                  <label class="mmylabel">Make</label>
+                  <select class="mmyentrybox" id="makelist" name="makelist" 
+                       onchange="SetCheckOnButton('mmybtn')">
+                    <option value="Choose">-Select Make-</option>
+                  </select>
+                  <br>
+                  <label class="mmylabel">Model</label>
+                  <select class="mmyentrybox" id="modellist" name="modellist" 
+                          onchange="SetCheckOnButton('mmybtn')">
+                    <option value="Choose">-Select Make First-</option>
+                  </select>
+                  <br>
+                  <label class="mmylabel">Year</label>
+                  <select class="mmyentrybox" id="yearlist" name="yearlist" 
+                          onchange="SetCheckOnButton('mmybtn')">
+                    <option value="Choose">All (not sure)</option>
+                  </select>
+                  <br>
+                  <label class="mmylabel">Submodel</label>
+                  <select class="mmyentrybox" id="submodellist" name="submodellist" title="Selecting a Submodel is optional."
+                          onchange="SetCheckOnButton('mmybtn')">
+                      <option value="Not sure">All (not sure)</option>
+                  </select>
+                  <br><div class="errmsg" id="mmy_errmsg">&nbsp;</div><br>
+              </div>
+          </div>
+          <datalist id="vinlist">
+          </datalist>
+        </div>
+      </section>
+      <center>
+        <div style="clear:left;margin-left:11px;background-color: #f1f1f1;width: 611px;">
+          <button id="formSubmitBtn" style="background-color:transparent;border:none;" type="submit" alt="Submit" border="0">
+            <img style="width:48px;height:48px;cursor: pointer;" src="{{ static_url('images/search.png') }}"/>
+          </button>            
+        </div>
+      </center>
+      <br>
+      <br>
+    </form>
+  </div>
+
